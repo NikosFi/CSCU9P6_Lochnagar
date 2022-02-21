@@ -5,11 +5,12 @@ package mvcexample;
 // As supplied, this view does not subscribe to the model as an Observer,
 // and relies on its controller to call update to cause the view to be refreshed.
 
-import java.util.*;  // For Observer
-import java.awt.*;
 import javax.swing.*;
+import java.awt.*;
+import java.util.Observable;
+import java.util.Observer;
 
-public class View3 extends JPanel {
+public class View3 extends JPanel implements Observer {
   
     private Model model;
     private Controller2 contr;   // Parent Frame
@@ -28,17 +29,18 @@ public class View3 extends JPanel {
         add(new JLabel("View3"));
         display = new JTextField("No data", 15);
         add(display);
+        model.addObserver(this);
         
     } // constructor
     
     // Called by controller to refresh the view:
-    public void update() {
-        
-        // Fetch (potentially) updated information and display it
-        int a = model.getDataA();
-        display.setText("Model data A: " + a);
-      
-    } // update
+//    public void update() {
+//
+//        // Fetch (potentially) updated information and display it
+//        int a = model.getDataA();
+//        display.setText("Model data A: " + a);
+//
+//    } // update
     
     // Called by the controller to clear the view:
     public void clear() {
@@ -46,7 +48,14 @@ public class View3 extends JPanel {
         display.setText("");
       
     } // clear
-  
+
+    @Override
+    public void update(Observable o, Object arg) {
+        // Fetch (potentially) updated information and display it
+        int a = model.getDataA();
+        display.setText("Model data A: " + a);
+
+    } // update
 } // class View3
 
 
