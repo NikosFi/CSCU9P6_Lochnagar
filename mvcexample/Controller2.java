@@ -6,9 +6,10 @@ package mvcexample;
 // The refresh views button is required as views 3 and 4 do not yet
 // subscribe properly to the model and are not notified when it changes.
 
-import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Controller2 extends JFrame
                          implements ActionListener {
@@ -58,10 +59,10 @@ public class Controller2 extends JFrame
             view3.clear();
             view4.clear();
         }
-        if (e.getSource() == refreshViews) {
-            view3.update();
-            view4.update();
-        }
+//        if (e.getSource() == refreshViews) {
+//            view3.update();
+//            view4.update();
+//        }
         
     } // actionPerformed
     
